@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+
+@MappedSuperclass
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,5 +33,8 @@ public class Carro {
     private String placa;
     private Float precoInicial;
     private Boolean foiVendido;
+
+    @ManyToOne
+    private Venda venda;
 
 }
