@@ -17,9 +17,14 @@ public class Agencia {
     private Long id;
 
     private String nome;
-    //estado
-    //cidade
-    //endereço
+
+    @ManyToOne
+    private Estado estado;
+    @ManyToOne
+    private Cidade cidade;
+
+    private String endereco;
+
     private Float valorEmCaixa;
 
 }

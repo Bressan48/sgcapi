@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class CarroDeTestDrive extends Carro{
+public class CarroTestDrive extends Carro{
 
     @ManyToOne
     private TestDrive testDrive;

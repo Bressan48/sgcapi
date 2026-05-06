@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Vendedor extends Pessoa{
+public class Vendedor extends Funcionario{
 
 }
 

@@ -17,5 +17,4 @@ public class Modelo {
     private Long id;
 
     private String nome;
-
 }

@@ -18,13 +18,13 @@ public class Carro {
     private Long id;
 
     @ManyToOne
-    private NomeDeCarro nome;
+    private Modelo modelo;
     @ManyToOne
     private Combustivel combustivel;
     @ManyToOne
     private Direcao direcao;
     @ManyToOne
-    private Modelo modelo;
+    private Carroceria carroceria;
 
     private Integer anoModelo;
     private Integer anoFabricacao;

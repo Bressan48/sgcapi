@@ -15,8 +15,8 @@ public class Agenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //private Date data;
-    //private Horario horario
+    private String data;
+    private String horario;
 
     private Boolean foiAgendado;
 }

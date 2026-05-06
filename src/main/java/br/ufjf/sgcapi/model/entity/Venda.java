@@ -22,7 +22,7 @@ public class Venda {
     private FormaDePagamento formaDePagamento;
 
     @ManyToOne
-    private Vendedor vendedor;
+    private Funcionario funcionario;
 
     @ManyToOne
     private Cliente cliente;

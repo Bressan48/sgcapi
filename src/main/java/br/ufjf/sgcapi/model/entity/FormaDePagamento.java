@@ -12,6 +12,10 @@ import lombok.NoArgsConstructor;
 
 public class FormaDePagamento {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String formaDePagamento;
     private Boolean temJuros;
 

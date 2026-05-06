@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Gerente extends Pessoa{
+public class Gerente extends Funcionario{
 
 }
 
