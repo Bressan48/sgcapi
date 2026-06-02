@@ -1,0 +1,65 @@
+package br.ufjf.sgcapi.service;
+
+import br.ufjf.sgcapi.exception.RegraNegocioException;
+import br.ufjf.sgcapi.model.entity.*;
+import br.ufjf.sgcapi.model.repository.FuncionarioRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.ErrorResponseException;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+@Service
+public class FuncionarioService {
+    private FuncionarioRepository repository;
+
+    public FuncionarioService(FuncionarioRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return repository.findAll();
+    }
+
+    public Optional<Funcionario> getFuncionariosById(Long id) {
+        return repository.findById(id);
+    }
+
+    @Transactional
+    public Funcionario salvar(Funcionario funcionario) {
+        validar(funcionario);
+        return repository.save(funcionario);
+    }
+
+    @Transactional
+    public void excluir(Funcionario funcionario) {
+        Objects.requireNonNull(funcionario.getId());
+        repository.delete(funcionario);
+    }
+
+    public void validar(Funcionario funcionario) {
+        if (funcionario.getNome() == null || funcionario.getNome().isEmpty()) {
+            throw new RegraNegocioException("Nome do funcionário inválido");
+        }
+        if (funcionario.getId() == null || funcionario.getId() == 0) {
+            throw new RegraNegocioException("Id do Funcionário inválido");
+        }
+        if (funcionario.getCpf() == null || funcionario.getCpf().isEmpty()) {
+            throw new RegraNegocioException("CPF do Funcionário inválido");
+        }
+        if (funcionario.getEmail() == null || funcionario.getEmail().isEmpty()) {
+            throw new RegraNegocioException("Email do Funcionário inválido");
+        }
+        if (funcionario.getSenha() == null || funcionario.getSenha().isEmpty()) {
+            throw new RegraNegocioException("Senha do Funcionário inválida");
+        }
+        if (funcionario.getEndereco() == null || funcionario.getEndereco().isEmpty()) {
+            throw new RegraNegocioException("Endereço do Funcionário inválido");
+        }
+        if (funcionario.getNumTelefone() == null || funcionario.getNumTelefone().isEmpty()) {
+            throw new RegraNegocioException("Número de telefone do Funcionário inválido");
+        }
+    }
+}

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 
+
 public class Gerente extends Funcionario{
 
 }
