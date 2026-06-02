@@ -19,11 +19,11 @@ public class CarroUsadoService {
         this.repository = repository;
     }
 
-    public List<CarroUsado> getCarros() {
+    public List<CarroUsado> getCarrosUsados() {
         return repository.findAll();
     }
 
-    public Optional<CarroUsado> getCarroById(Long id) {
+    public Optional<CarroUsado> getCarroUsadoById(Long id) {
         return repository.findById(id);
     }
 
