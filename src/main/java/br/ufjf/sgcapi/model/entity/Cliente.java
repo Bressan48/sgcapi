@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 
 public class Cliente extends Pessoa{
 

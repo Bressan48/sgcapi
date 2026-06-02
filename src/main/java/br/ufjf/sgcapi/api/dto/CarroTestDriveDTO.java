@@ -18,12 +18,12 @@ public class CarroTestDriveDTO extends Carro {
 
     @ManyToOne
     private Long idCarro;
-    private String modelo;
+    private String nomeCarro;
 
     public static CarroTestDriveDTO create(CarroTestDrive carroTestDrive) {
         ModelMapper modelMapper = new ModelMapper();
         CarroTestDriveDTO dto = modelMapper.map(carroTestDrive, CarroTestDriveDTO.class);
-        dto.modelo = carroTestDrive.getModelo().getNome();
+        dto.nomeCarro = carroTestDrive.getModelo().getNome();
         dto.idCarro = carroTestDrive.getModelo().getId();
         return dto;
     }

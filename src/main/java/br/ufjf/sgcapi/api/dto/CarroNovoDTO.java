@@ -21,12 +21,12 @@ public class CarroNovoDTO extends Carro {
 
 
     private Long idCarro;
-    private String modelo;
+    private String nomeCarro;
 
     public static CarroNovoDTO create(CarroNovo carroNovo) {
         ModelMapper modelMapper = new ModelMapper();
         CarroNovoDTO dto = modelMapper.map(carroNovo, CarroNovoDTO.class);
-        dto.modelo = carroNovo.getModelo().getNome();
+        dto.nomeCarro = carroNovo.getModelo().getNome();
         dto.idCarro = carroNovo.getModelo().getId();
         return dto;
     }

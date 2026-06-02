@@ -25,12 +25,12 @@ public class CarroUsadoDTO extends Carro {
     private Float precoTabelaFipe;
 
     private Long idCarro;
-    private String modelo;
+    private String nomeCarro;
 
     public static CarroUsadoDTO create(CarroUsado carroUsado) {
         ModelMapper modelMapper = new ModelMapper();
         CarroUsadoDTO dto = modelMapper.map(carroUsado, CarroUsadoDTO.class);
-        dto.modelo = carroUsado.getModelo().getNome();
+        dto.nomeCarro = carroUsado.getModelo().getNome();
         dto.idCarro = carroUsado.getModelo().getId();
         return dto;
     }
