@@ -42,7 +42,7 @@ public class CarroTestDriveService {
         if (carroTesteDrive.getModelo() == null || carroTesteDrive.getModelo().getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do modelo inválida");
         }
-        if (carroTesteDrive.getId() == null || carroTesteDrive.getModelo().getId() == 0) {
+        if (carroTesteDrive.getId() == null || carroTesteDrive.getId() == 0) {
             throw new RegraNegocioException("Id inválido");
         }
         if (carroTesteDrive.getPlaca() == null || carroTesteDrive.getPlaca().isEmpty()) {
