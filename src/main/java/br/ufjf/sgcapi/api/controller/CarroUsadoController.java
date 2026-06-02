@@ -1,4 +1,3 @@
-/*
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.CarroUsadoDTO;
@@ -16,8 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/carroUsado") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/carroUsado")
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -27,7 +25,7 @@ public class CarroUsadoController {
 
     @GetMapping()
     public ResponseEntity get() {
-        List<CarroUsado> lista = service.getCarroUsados();
+        List<CarroUsado> lista = service.getCarrosUsados();
         return ResponseEntity.ok(lista.stream().map(CarroUsadoDTO::create).collect(Collectors.toList()));
     }
 
@@ -85,4 +83,3 @@ public class CarroUsadoController {
         return modelMapper.map(dto, CarroUsado.class);
     }
 }
-*/

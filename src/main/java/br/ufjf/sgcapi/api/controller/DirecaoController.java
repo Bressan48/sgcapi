@@ -1,4 +1,3 @@
-/*
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.DirecaoDTO;
@@ -16,8 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/direcao") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/direcao")
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -85,4 +83,3 @@ public class DirecaoController {
         return modelMapper.map(dto, Direcao.class);
     }
 }
-*/

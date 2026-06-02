@@ -1,4 +1,4 @@
-/*
+
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.EstadoDTO;
@@ -16,8 +16,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/estado") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/estado")
+
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -85,4 +85,3 @@ public class EstadoController {
         return modelMapper.map(dto, Estado.class);
     }
 }
-*/

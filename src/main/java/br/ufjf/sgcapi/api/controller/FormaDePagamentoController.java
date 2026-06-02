@@ -1,4 +1,4 @@
-/*
+
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.FormaDePagamentoDTO;
@@ -16,8 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/formaDePagamento") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/formaDePagamento")
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -85,4 +84,3 @@ public class FormaDePagamentoController {
         return modelMapper.map(dto, FormaDePagamento.class);
     }
 }
-*/

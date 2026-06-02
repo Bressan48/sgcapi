@@ -1,4 +1,3 @@
-/*
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.TestDriveDTO;
@@ -16,8 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/testDrive") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/testDrive")
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -85,4 +83,3 @@ public class TestDriveController {
         return modelMapper.map(dto, TestDrive.class);
     }
 }
-*/

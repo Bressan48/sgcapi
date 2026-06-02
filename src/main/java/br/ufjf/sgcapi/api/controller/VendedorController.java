@@ -1,4 +1,3 @@
-/*
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.VendedorDTO;
@@ -16,8 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/vendedor") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/vendedor")
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -85,4 +83,3 @@ public class VendedorController {
         return modelMapper.map(dto, Vendedor.class);
     }
 }
-*/

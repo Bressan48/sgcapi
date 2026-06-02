@@ -1,4 +1,4 @@
-/*
+
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.CarroceriaDTO;
@@ -16,8 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/carroceria") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/carroceria")
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -85,4 +84,3 @@ public class CarroceriaController {
         return modelMapper.map(dto, Carroceria.class);
     }
 }
-*/

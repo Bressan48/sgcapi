@@ -1,4 +1,3 @@
-/*
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.AgendaDTO;
@@ -16,8 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/agenda") */
-/* MUDE AQUI *//*
+@RequestMapping("/api/v1/agenda")
 
 @RequiredArgsConstructor
 @CrossOrigin
@@ -85,4 +83,4 @@ public class AgendaController {
         return modelMapper.map(dto, Agenda.class);
     }
 }
-*/
+

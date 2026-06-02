@@ -1,4 +1,4 @@
-/*
+
 package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.AcessorioDTO;
@@ -83,4 +83,4 @@ public class AcessorioController {
         return modelMapper.map(dto, Acessorio.class);
     }
 }
-*/
+
