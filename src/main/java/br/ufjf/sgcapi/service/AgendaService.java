@@ -37,6 +37,7 @@ public class AgendaService {
     public void excluir(Agenda agenda) {
         Objects.requireNonNull(agenda.getId());
         repository.delete(agenda);
+
     }
 
     public void validar(Agenda agenda) {
