@@ -16,7 +16,6 @@ import org.modelmapper.ModelMapper;
 
 public class CarroTestDriveDTO extends Carro {
 
-    @ManyToOne
     private Long idCarro;
     private String nomeCarro;
 

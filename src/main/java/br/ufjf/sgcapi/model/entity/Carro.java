@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@MappedSuperclass
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
