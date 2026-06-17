@@ -43,9 +43,6 @@ public class AcessorioService {
         if (acessorio.getNome() == null || acessorio.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do acessorio inválido");
         }
-        if (acessorio.getId() == null || acessorio.getId() == 0) {
-            throw new RegraNegocioException("Id do acessorio inválido");
-        }
 
     }
 }
