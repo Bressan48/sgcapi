@@ -53,12 +53,9 @@ public class SecurityConfig {
                 .cors(cors -> cors.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/usuarios/**").permitAll()
-                        .requestMatchers("/api/v1/clientes/**").permitAll()
+                        .requestMatchers("/api/v1/funcionarios/**").permitAll()
                         .requestMatchers("/api/v1/produtos/**").permitAll()
                         .requestMatchers("/api/v1/metodos-pagamento/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/api/v1/lojas/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/api/v1/colaboradores/**").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
