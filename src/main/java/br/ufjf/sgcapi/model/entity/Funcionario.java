@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class Funcionario extends Pessoa{
 
     private String senha;
+    private boolean isGerente;
 }

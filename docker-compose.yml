@@ -1,20 +1,20 @@
 services:
   postgres:
     image: postgres:16
-    container_name: sgcapi-postgres
+    container_name: spring-postgres
     restart: always
     environment:
-      POSTGRES_DB: postgres-sgcapi-db
-      POSTGRES_USER: sgcapi_user
-      POSTGRES_PASSWORD: conccessionariaapi
+      POSTGRES_DB: sgcapi_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: sgcapi-pgadmin
+    container_name: spring-pgadmin
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com

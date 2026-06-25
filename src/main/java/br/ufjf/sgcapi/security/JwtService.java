@@ -25,7 +25,7 @@ public class JwtService {
     @Value("${security.jwt.chave-assinatura}")
     private String chaveAssinatura;
 
-    public String gerarToken( Usuario usuario ){
+    public String gerarToken( Funcionario funcionario ){
         long expString = Long.valueOf(expiracao);
         LocalDateTime dataHoraExpiracao = LocalDateTime.now().plusDays(expString);
         Instant instant = dataHoraExpiracao.atZone(ZoneId.systemDefault()).toInstant();
@@ -33,7 +33,7 @@ public class JwtService {
 
         return Jwts
                 .builder()
-                .setSubject(usuario.getLogin())
+                .setSubject(funcionario.getEmail())
                 .setExpiration(data)
                 .signWith( SignatureAlgorithm.HS512, chaveAssinatura )
                 .compact();

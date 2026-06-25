@@ -3,83 +3,80 @@ package br.ufjf.sgcapi.config;
 import br.ufjf.sgcapi.security.JwtAuthFilter;
 import br.ufjf.sgcapi.security.JwtService;
 import br.ufjf.sgcapi.service.FuncionarioService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.filter.OncePerRequestFilter;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private FuncionarioService funcionarioService;
-
-    @Autowired
-    private JwtService jwtService;
+    private final FuncionarioService funcionarioService;
+    private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder; // Injetado automaticamente do PasswordConfig
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public OncePerRequestFilter jwtFilter() {
+    public JwtAuthFilter jwtFilter() {
         return new JwtAuthFilter(jwtService, funcionarioService);
     }
 
-    // 1. Substitui o antigo configure(AuthenticationManagerBuilder auth)
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationProvider authenticationProvider() {
+        // Passando o funcionarioService diretamente no construtor da classe!
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider((UserDetailsService) funcionarioService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
     }
 
-    // 2. Substitui o antigo configure(HttpSecurity http)
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/alunos/**").permitAll()
-                        .requestMatchers("/api/v1/atividadescomplementares/**").permitAll()
-                        .requestMatchers("/api/v1/concedentes/**").permitAll()
-                        .requestMatchers("/api/v1/professores/**").permitAll()
-                        .requestMatchers("/api/v1/cursos/**").permitAll()
-                        .requestMatchers("/api/v1/categorias/**").permitAll()
-                        .requestMatchers("/api/v1/funcionarios/**").permitAll()
-                        .requestMatchers("/api/v1/estagios/**").hasRole("ADMIN")       // Nota: use hasRole sem o prefixo "ROLE_"
-                        .requestMatchers("/api/v1/vagas/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/v1/usuarios/**").permitAll()
+                        .requestMatchers("/api/v1/clientes/**").permitAll()
+                        .requestMatchers("/api/v1/produtos/**").permitAll()
+                        .requestMatchers("/api/v1/metodos-pagamento/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/api/v1/lojas/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/api/v1/colaboradores/**").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+                .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // 3. Substitui o antigo configure(WebSecurity web) para ignorar o Swagger
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers(
                 "/v2/api-docs",
-                "/v3/api-docs/**", // Adicionado para suporte ao OpenAPI 3 / Swagger moderno
-                "/swagger-ui/**",  // Adicionado para suporte ao Swagger moderno
+                "/v3/api-docs/**",
                 "/configuration/ui",
                 "/swagger-resources/**",
                 "/configuration/security",
                 "/swagger-ui.html",
+                "/swagger-ui/**",
                 "/webjars/**"
         );
     }
