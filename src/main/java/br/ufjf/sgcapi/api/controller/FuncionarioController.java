@@ -96,6 +96,8 @@ public class FuncionarioController {
             }
             Funcionario funcionario = converter(dto);
             funcionario.setId(id);
+            String senhaCriptografada = passwordEncoder.encode(dto.getSenha());
+            funcionario.setSenha(senhaCriptografada);
             service.salvar(funcionario);
             return ResponseEntity.ok(funcionario);
         } catch (RegraNegocioException e) {
