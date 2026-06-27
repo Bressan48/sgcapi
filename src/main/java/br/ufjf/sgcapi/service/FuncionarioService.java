@@ -45,7 +45,7 @@ public class FuncionarioService implements UserDetailsService{
     }
 
     public UserDetails autenticar(Funcionario funcionario){
-        UserDetails user = loadUserByUsername(funcionario.getEmail());
+        UserDetails user = loadUserByUsername(funcionario.getLogin());
         boolean senhasBatem = encoder.matches(funcionario.getSenha(), user.getPassword());
 
         if (senhasBatem){
@@ -57,11 +57,11 @@ public class FuncionarioService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Funcionario funcionario = repository.findByEmail(username)
+        Funcionario funcionario = repository.findByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
         //ver se é gerente ou vendedor
-        String[] roles = funcionario.isGerente()
+        String[] roles = funcionario.isAdmin()
                 ? new String[]{"Gerente", "Vendedor"}
                 : new String[]{"Funcionario"};
 
@@ -82,9 +82,6 @@ public class FuncionarioService implements UserDetailsService{
     public void validar(Funcionario funcionario) {
         if (funcionario.getNome() == null || funcionario.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do funcionário inválido");
-        }
-        if (funcionario.getId() == null || funcionario.getId() == 0) {
-            throw new RegraNegocioException("Id do Funcionário inválido");
         }
         if (funcionario.getCpf() == null || funcionario.getCpf().isEmpty()) {
             throw new RegraNegocioException("CPF do Funcionário inválido");

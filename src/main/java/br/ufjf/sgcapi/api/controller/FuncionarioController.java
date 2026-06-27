@@ -75,7 +75,7 @@ public class FuncionarioController {
                     .senha(credenciais.getSenha()).build();
             UserDetails funcionarioAutenticado = funcionarioService.autenticar(funcionario);
             String token = jwtService.gerarToken(funcionario);
-            return new TokenDTO(funcionario.getEmail(), token);
+            return new TokenDTO(funcionario.getLogin(), token);
         } catch (UsernameNotFoundException | SenhaInvalidaException e ){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }

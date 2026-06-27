@@ -12,6 +12,10 @@ import org.modelmapper.ModelMapper;
 public class FuncionarioDTO {
 
     private Long id;
+    private String nome;
+    private String email;
+    private String endereco;
+    private String numTelefone;
     private String login;
     private String senha;
     private String senhaRepeticao;
