@@ -42,9 +42,6 @@ public class CarroceriaService {
         if (carroceria.getNome() == null || carroceria.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome da carroceria inválida");
         }
-        if (carroceria.getId() == null || carroceria.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
 
     }
 }

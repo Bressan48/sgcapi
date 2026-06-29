@@ -42,9 +42,6 @@ public class CarroNovoService {
         if (carroNovo.getModelo() == null || carroNovo.getModelo().getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do modelo inválida");
         }
-        if (carroNovo.getId() == null || carroNovo.getModelo().getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (carroNovo.getPlaca() == null || carroNovo.getPlaca().isEmpty()) {
             throw new RegraNegocioException("Placa inválida");
         }

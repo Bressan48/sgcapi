@@ -40,9 +40,6 @@ public class DirecaoService {
     }
 
     public void validar(Direcao direcao) {
-        if (direcao.getId() == null || direcao.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (direcao.getNome() == null || direcao.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome inválido");
         }

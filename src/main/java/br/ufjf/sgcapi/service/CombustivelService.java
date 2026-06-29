@@ -43,9 +43,6 @@ public class CombustivelService {
         if (combustivel.getNome() == null || combustivel.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do modelo inválida");
         }
-        if (combustivel.getId() == null || combustivel.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
 
     }
 }

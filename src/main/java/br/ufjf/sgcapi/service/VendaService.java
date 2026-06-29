@@ -40,9 +40,6 @@ public class VendaService {
     }
 
     public void validar(Venda venda) {
-        if (venda.getId() == null || venda.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (venda.getValorVenda() == null || venda.getValorVenda() == 0) {
             throw new RegraNegocioException("Valor da venda inválido");
         }

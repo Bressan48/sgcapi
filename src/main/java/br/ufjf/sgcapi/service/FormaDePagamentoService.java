@@ -43,11 +43,8 @@ public class FormaDePagamentoService {
         if (formaDePagamento.getFormaDePagamento() == null || formaDePagamento.getFormaDePagamento().isEmpty()) {
             throw new RegraNegocioException("Forma de pagamento inválida");
         }
-        if (formaDePagamento.getId() == null || formaDePagamento.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (formaDePagamento.getTemJuros() == null ) {
-            throw new RegraNegocioException("Id inválido");
+            throw new RegraNegocioException("Juros inválido");
         }
 
     }

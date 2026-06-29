@@ -40,10 +40,6 @@ public class TestDriveService {
 
     public void validar(TestDrive estado) {
 
-        if (estado.getId() == null || estado.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
-
         if (estado.getCliente().getId() == null || estado.getCliente().getId() ==0) {
             throw new RegraNegocioException("Cliente inválida");
         }

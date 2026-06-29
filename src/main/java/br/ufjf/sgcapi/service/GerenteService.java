@@ -42,9 +42,6 @@ public class GerenteService {
         if (gerente.getNome() == null || gerente.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome da gerente inválida");
         }
-        if (gerente.getId() == null || gerente.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (gerente.getEmail() == null || gerente.getEmail().isEmpty()) {
             throw new RegraNegocioException("Email inválido");
         }

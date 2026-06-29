@@ -43,9 +43,6 @@ public class CidadeService {
         if (cidade.getNome() == null || cidade.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do modelo inválida");
         }
-        if (cidade.getId() == null || cidade.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
 
     }
 }

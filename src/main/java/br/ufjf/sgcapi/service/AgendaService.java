@@ -41,14 +41,8 @@ public class AgendaService {
     }
 
     public void validar(Agenda agenda) {
-        if (agenda.getId() == null || agenda.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (agenda.getData() == null || agenda.getData().isEmpty()) {
             throw new RegraNegocioException("Data inválida");
-        }
-        if (agenda.getFoiAgendado() == null) {
-            throw new RegraNegocioException("Id inválido");
         }
         if (agenda.getHorario() == null || agenda.getHorario().isEmpty()) {
             throw new RegraNegocioException("Horário inválido");

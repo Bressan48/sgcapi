@@ -43,9 +43,6 @@ public class CarroUsadoService {
         if (carroUsado.getModelo() == null || carroUsado.getModelo().getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do modelo inválida");
         }
-        if (carroUsado.getId() == null || carroUsado.getModelo().getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (carroUsado.getDocEmDia() == null) {
             throw new RegraNegocioException("Documentão em dia inválida");
         }

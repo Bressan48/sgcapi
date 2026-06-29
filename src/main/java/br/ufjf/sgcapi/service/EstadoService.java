@@ -42,9 +42,6 @@ public class EstadoService {
         if (estado.getNome() == null || estado.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome da estado inválida");
         }
-        if (estado.getId() == null || estado.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (estado.getSigla() == null || estado.getSigla().isEmpty()) {
             throw new RegraNegocioException("Sigla inválida");
         }

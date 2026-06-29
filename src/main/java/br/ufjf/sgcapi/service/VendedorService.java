@@ -42,9 +42,6 @@ public class VendedorService {
         if (vendedor.getNome() == null || vendedor.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome da vendedor inválida");
         }
-        if (vendedor.getId() == null || vendedor.getId() == 0) {
-            throw new RegraNegocioException("Id inválido");
-        }
         if (vendedor.getEmail() == null || vendedor.getEmail().isEmpty()) {
             throw new RegraNegocioException("Email inválido");
         }
