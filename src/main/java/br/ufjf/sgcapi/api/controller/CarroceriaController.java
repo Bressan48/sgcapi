@@ -5,6 +5,7 @@ import br.ufjf.sgcapi.api.dto.CarroceriaDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.Carroceria;
 import br.ufjf.sgcapi.service.CarroceriaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Carroceria")
 public class CarroceriaController {
 
     private final CarroceriaService service;

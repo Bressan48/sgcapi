@@ -4,6 +4,7 @@ import br.ufjf.sgcapi.api.dto.CarroUsadoDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.CarroUsado;
 import br.ufjf.sgcapi.service.CarroUsadoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Carros Usados")
 public class CarroUsadoController {
 
     private final CarroUsadoService service;

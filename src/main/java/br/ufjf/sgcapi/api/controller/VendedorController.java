@@ -4,6 +4,7 @@ import br.ufjf.sgcapi.api.dto.VendedorDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.Vendedor;
 import br.ufjf.sgcapi.service.VendedorService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Vendedores")
 public class VendedorController {
 
     private final VendedorService service;

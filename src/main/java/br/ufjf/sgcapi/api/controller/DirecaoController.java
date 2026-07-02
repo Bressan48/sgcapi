@@ -4,6 +4,7 @@ import br.ufjf.sgcapi.api.dto.DirecaoDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.Direcao;
 import br.ufjf.sgcapi.service.DirecaoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Tipo de Direção")
 public class DirecaoController {
 
     private final DirecaoService service;

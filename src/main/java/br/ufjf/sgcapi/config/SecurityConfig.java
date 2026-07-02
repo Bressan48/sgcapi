@@ -49,30 +49,38 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfiguration.setAllowedOrigins(java.util.List.of("*"));
+                    corsConfiguration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+                    corsConfiguration.setAllowedHeaders(java.util.List.of("Authorization", "Cache-Control", "Content-Type"));
+                    return corsConfiguration;
+                }))
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/funcionarios/**").permitAll()
-                        .requestMatchers("/api/v1/combustivel/**").permitAll()
-                        .requestMatchers("/api/v1/cliente/**").permitAll()
-                        .requestMatchers("/api/v1/cidade/**").permitAll()
-                        .requestMatchers("/api/v1/carroceria/**").permitAll()
-                        .requestMatchers("/api/v1/carroUsado/**").permitAll()
-                        .requestMatchers("/api/v1/carroTestDrive/**").permitAll()
-                        .requestMatchers("/api/v1/carroNovo/**").permitAll()
-                        .requestMatchers("/api/v1/agenda/**").permitAll()
-                        .requestMatchers("/api/v1/agencia/**").permitAll()
-                        .requestMatchers("/api/v1/acessorio/**").permitAll()
-                        .requestMatchers("/api/v1/vendedor/**").permitAll()
-                        .requestMatchers("/api/v1/venda/**").permitAll()
-                        .requestMatchers("/api/v1/testDrive/**").permitAll()
-                        .requestMatchers("/api/v1/modelo/**").permitAll()
-                        .requestMatchers("/api/v1/gerente/**").permitAll()
-                        .requestMatchers("/api/v1/acessorio/**").permitAll()
-                        .requestMatchers("/api/v1/formaDePagamento/**").permitAll()
-                        .requestMatchers("/api/v1/estado/**").permitAll()
-                        .requestMatchers("/api/v1/direcao/**").permitAll()
+                        // CORREÇÃO: Libere o Swagger aqui em vez de usar o .ignoring()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+
+                        .requestMatchers("/api/v1/funcionarios/auth").permitAll()
+                        .requestMatchers("/api/v1/combustivel/**").authenticated()
+                        .requestMatchers("/api/v1/cliente/**").authenticated()
+                        .requestMatchers("/api/v1/cidade/**").authenticated()
+                        .requestMatchers("/api/v1/carroceria/**").authenticated()
+                        .requestMatchers("/api/v1/carroUsado/**").authenticated()
+                        .requestMatchers("/api/v1/carroTestDrive/**").authenticated()
+                        .requestMatchers("/api/v1/carroNovo/**").authenticated()
+                        .requestMatchers("/api/v1/agenda/**").authenticated()
+                        .requestMatchers("/api/v1/agencia/**").authenticated()
+                        .requestMatchers("/api/v1/acessorio/**").authenticated()
+                        .requestMatchers("/api/v1/vendedor/**").authenticated()
+                        .requestMatchers("/api/v1/venda/**").authenticated()
+                        .requestMatchers("/api/v1/testDrive/**").authenticated()
+                        .requestMatchers("/api/v1/modelo/**").authenticated()
+                        .requestMatchers("/api/v1/gerente/**").authenticated()
+                        .requestMatchers("/api/v1/formaDePagamento/**").authenticated()
+                        .requestMatchers("/api/v1/estado/**").authenticated()
+                        .requestMatchers("/api/v1/direcao/**").authenticated()
 
                         .anyRequest().authenticated()
                 )
@@ -84,15 +92,8 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(
-                "/v2/api-docs",
-                "/v3/api-docs/**",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/swagger-ui/**",
-                "/webjars/**"
-        );
+        // Limpe o que estava aqui dentro. Deixe apenas arquivos estáticos de interface se necessário,
+        // mas remover o bloqueio das rotas principais é o segredo.
+        return (web) -> web.ignoring().requestMatchers("/webjars/**", "/favicon.ico");
     }
 }

@@ -4,6 +4,7 @@ import br.ufjf.sgcapi.api.dto.ClienteDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.Cliente;
 import br.ufjf.sgcapi.service.ClienteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/cliente") /* MUDE AQUI */
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Clientes")
 public class ClienteController {
 
     private final ClienteService service;

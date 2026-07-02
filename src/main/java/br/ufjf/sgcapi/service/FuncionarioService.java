@@ -60,14 +60,15 @@ public class FuncionarioService implements UserDetailsService{
         Funcionario funcionario = repository.findByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
-        //ver se é gerente ou vendedor
+        // Ver se é gerente ou vendedor
         String[] roles = funcionario.isAdmin()
                 ? new String[]{"Gerente", "Vendedor"}
                 : new String[]{"Funcionario"};
 
         return User
                 .builder()
-                .username(funcionario.getEmail())/// equivalente a getLogin
+                // CORREÇÃO: Devolve o LOGIN aqui, para bater com o Subject do token!
+                .username(funcionario.getLogin())
                 .password(funcionario.getSenha())
                 .roles(roles)
                 .build();

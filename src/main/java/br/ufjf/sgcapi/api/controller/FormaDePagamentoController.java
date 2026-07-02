@@ -5,6 +5,7 @@ import br.ufjf.sgcapi.api.dto.FormaDePagamentoDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.FormaDePagamento;
 import br.ufjf.sgcapi.service.FormaDePagamentoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Formas de Pagamento")
 public class FormaDePagamentoController {
 
     private final FormaDePagamentoService service;

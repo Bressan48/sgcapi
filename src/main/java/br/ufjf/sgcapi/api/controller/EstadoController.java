@@ -5,6 +5,7 @@ import br.ufjf.sgcapi.api.dto.EstadoDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.Estado;
 import br.ufjf.sgcapi.service.EstadoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Estados")
 public class EstadoController {
 
     private final EstadoService service;

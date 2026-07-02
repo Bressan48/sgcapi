@@ -4,6 +4,7 @@ import br.ufjf.sgcapi.api.dto.TestDriveDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
 import br.ufjf.sgcapi.model.entity.TestDrive;
 import br.ufjf.sgcapi.service.TestDriveService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Testes Drive")
 public class TestDriveController {
 
     private final TestDriveService service;

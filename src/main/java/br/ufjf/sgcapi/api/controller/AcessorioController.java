@@ -10,7 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/acessorios")
 @RequiredArgsConstructor
 @CrossOrigin
+@Tag(name = "Acessórios")
 public class AcessorioController {
 
     private final AcessorioService service;
