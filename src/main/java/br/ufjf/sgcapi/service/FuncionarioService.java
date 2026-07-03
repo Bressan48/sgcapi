@@ -67,7 +67,6 @@ public class FuncionarioService implements UserDetailsService{
 
         return User
                 .builder()
-                // CORREÇÃO: Devolve o LOGIN aqui, para bater com o Subject do token!
                 .username(funcionario.getLogin())
                 .password(funcionario.getSenha())
                 .roles(roles)

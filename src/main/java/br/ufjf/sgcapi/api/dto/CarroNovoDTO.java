@@ -14,7 +14,7 @@ public class CarroNovoDTO extends Carro {
 
     private Integer anosDeGarantia;
 
-    private Long idCarro; // ID do Carro Novo em si
+    private Long idCarro;
     private Long idModelo;
     private String nomeModelo;
     private Long idCombustivel;

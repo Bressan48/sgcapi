@@ -35,7 +35,6 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        // Passando o funcionarioService diretamente no construtor da classe!
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider((UserDetailsService) funcionarioService);
         authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
@@ -59,7 +58,6 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // CORREÇÃO: Libere o Swagger aqui em vez de usar o .ignoring()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
 
                         .requestMatchers("/api/v1/funcionarios/auth").permitAll()
@@ -92,8 +90,6 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        // Limpe o que estava aqui dentro. Deixe apenas arquivos estáticos de interface se necessário,
-        // mas remover o bloqueio das rotas principais é o segredo.
         return (web) -> web.ignoring().requestMatchers("/webjars/**", "/favicon.ico");
     }
 }

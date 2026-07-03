@@ -6,7 +6,6 @@ import br.ufjf.sgcapi.exception.SenhaInvalidaException;
 import br.ufjf.sgcapi.model.entity.Funcionario;
 import br.ufjf.sgcapi.security.JwtService;
 import br.ufjf.sgcapi.service.FuncionarioService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -25,7 +24,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/funcionarios")
 @RequiredArgsConstructor
 @CrossOrigin
-@Tag(name = "Funcionários e Autenticação")
 public class FuncionarioController {
 
     private final FuncionarioService funcionarioService;
@@ -72,17 +70,12 @@ public class FuncionarioController {
     @PostMapping("/auth")
     public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
         try{
-            UserDetails funcionarioAutenticado = service.loadUserByUsername(credenciais.getLogin());
-
             Funcionario funcionario = Funcionario.builder()
-                    .login(funcionarioAutenticado.getUsername())
+                    .login(credenciais.getLogin())
                     .senha(credenciais.getSenha()).build();
-
-            service.autenticar(funcionario);
-
+            UserDetails funcionarioAutenticado = funcionarioService.autenticar(funcionario);
             String token = jwtService.gerarToken(funcionario);
             return new TokenDTO(funcionario.getLogin(), token);
-
         } catch (UsernameNotFoundException | SenhaInvalidaException e ){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciais inválidas");
         }
