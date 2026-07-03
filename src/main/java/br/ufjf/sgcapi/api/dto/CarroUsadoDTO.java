@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
