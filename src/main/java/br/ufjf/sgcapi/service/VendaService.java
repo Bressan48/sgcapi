@@ -43,13 +43,16 @@ public class VendaService {
         if (venda.getValorVenda() == null || venda.getValorVenda() == 0) {
             throw new RegraNegocioException("Valor da venda inválido");
         }
-        if (venda.getCliente() == null || venda.getCliente().getNome().isEmpty()) {
+
+        if (venda.getCliente() == null || venda.getCliente().getId() == null || venda.getCliente().getId() == 0) {
             throw new RegraNegocioException("Cliente inválida");
         }
-        if (venda.getFuncionario().getId() == null || venda.getFuncionario().getId() == 0) {
+
+        if (venda.getFuncionario() == null || venda.getFuncionario().getId() == null || venda.getFuncionario().getId() == 0) {
             throw new RegraNegocioException("Funcionário inválida");
         }
-        if (venda.getFormaDePagamento() == null || venda.getFormaDePagamento().getId() == 0) {
+
+        if (venda.getFormaDePagamento() == null || venda.getFormaDePagamento().getId() == null || venda.getFormaDePagamento().getId() == 0) {
             throw new RegraNegocioException("Forma de pagamento inválida");
         }
     }

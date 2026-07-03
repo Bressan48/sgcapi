@@ -71,9 +71,9 @@ public class CarroNovoService {
         if (carroNovo.getCarroceria() == null || carroNovo.getCarroceria().getNome().isEmpty()) {
             throw new RegraNegocioException("Carroceria inválida");
         }
-        if (carroNovo.getFoiVendido() == null) {
-            throw new RegraNegocioException("Condição foi vendido inválida");
-        }
+        //if (carroNovo.getFoiVendido() == null) {
+        //    throw new RegraNegocioException("Condição foi vendido inválida");
+        //}
 
     }
 }

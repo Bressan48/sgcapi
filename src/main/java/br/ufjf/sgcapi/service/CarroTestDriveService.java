@@ -73,10 +73,6 @@ public class CarroTestDriveService {
 
         // EXCLUSIVO TESTE DRIVE
 
-        if (carroTesteDrive.getTestDrive().getId() == null || carroTesteDrive.getTestDrive().getId()  == 0) {
-            throw new RegraNegocioException("ID do teste drive inválido");
-        }
-
         if (carroTesteDrive.getTestDrive().getCliente() == null || carroTesteDrive.getTestDrive().getCliente().getId() == 0) {
             throw new RegraNegocioException("Cliente teste drive inválido");
         }

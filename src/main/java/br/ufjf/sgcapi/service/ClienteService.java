@@ -43,9 +43,6 @@ public class ClienteService {
         if (cliente.getNome() == null || cliente.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do cliente inválido");
         }
-        if (cliente.getId() == null || cliente.getId() == 0) {
-            throw new RegraNegocioException("Id do cliente inválido");
-        }
         if (cliente.getCpf() == null || cliente.getCpf().isEmpty()) {
             throw new RegraNegocioException("CPF do cliente inválido");
         }

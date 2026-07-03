@@ -43,9 +43,6 @@ public class AgenciaService {
         if (agencia.getNome() == null || agencia.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome da agencia inválido");
         }
-        if (agencia.getId() == null || agencia.getId() == 0) {
-            throw new RegraNegocioException("Id da agencia inválido");
-        }
         if (agencia.getEstado()== null || agencia.getEstado().getNome().isEmpty()) {
             throw new RegraNegocioException("Estado da agencia inválido");
         }

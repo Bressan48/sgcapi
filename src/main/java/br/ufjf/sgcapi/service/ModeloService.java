@@ -43,9 +43,6 @@ public class ModeloService{
         if (modelo.getNome() == null || modelo.getNome().isEmpty()) {
             throw new RegraNegocioException("Nome do modelo inválido");
         }
-        if (modelo.getId() == null || modelo.getId() == 0) {
-            throw new RegraNegocioException("Id do modelo inválido");
-        }
 
     }
 }
