@@ -5,15 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+public class CarroNovo extends Carro {
 
-public class CarroNovo extends Carro{
-
-    private String placa;
     private Integer anosDeGarantia;
-
 }

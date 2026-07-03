@@ -12,21 +12,21 @@ import org.modelmapper.ModelMapper;
 @AllArgsConstructor
 public class CarroNovoDTO extends Carro {
 
-    private String placa;
     private Integer anosDeGarantia;
 
+    private Long idCarro; // ID do Carro Novo em si
     private Long idModelo;
     private String nomeModelo;
-
     private Long idCombustivel;
     private String nomeCombustivel;
-
     private Long idCarroceria;
     private String nomeCarroceria;
 
     public static CarroNovoDTO create(CarroNovo carroNovo) {
         ModelMapper modelMapper = new ModelMapper();
         CarroNovoDTO dto = modelMapper.map(carroNovo, CarroNovoDTO.class);
+
+        dto.idCarro = carroNovo.getId();
 
         if (carroNovo.getModelo() != null) {
             dto.idModelo = carroNovo.getModelo().getId();

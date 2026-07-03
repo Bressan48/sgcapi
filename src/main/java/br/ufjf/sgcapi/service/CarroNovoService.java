@@ -35,7 +35,12 @@ public class CarroNovoService {
     @Transactional
     public void excluir(CarroNovo carroNovo) {
         Objects.requireNonNull(carroNovo.getId());
-        repository.delete(carroNovo);
+
+        if (repository.existsById(carroNovo.getId())) {
+            repository.deleteById(carroNovo.getId());
+        } else {
+            throw new RegraNegocioException("Carro não encontrado para exclusão.");
+        }
     }
 
     public void validar(CarroNovo carroNovo) {
