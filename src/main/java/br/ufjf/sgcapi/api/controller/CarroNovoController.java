@@ -2,6 +2,9 @@ package br.ufjf.sgcapi.api.controller;
 
 import br.ufjf.sgcapi.api.dto.CarroNovoDTO;
 import br.ufjf.sgcapi.exception.RegraNegocioException;
+import br.ufjf.sgcapi.model.entity.Carroceria;
+import br.ufjf.sgcapi.model.entity.Combustivel;
+import br.ufjf.sgcapi.model.entity.Modelo;
 import br.ufjf.sgcapi.model.entity.CarroNovo;
 import br.ufjf.sgcapi.service.CarroNovoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,7 +37,7 @@ public class CarroNovoController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<CarroNovo> obj = service.getCarroNovoById(id);
         if (!obj.isPresent()) {
-            return new ResponseEntity("Acessório não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Carro Novo não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(obj.map(CarroNovoDTO::create));
     }
@@ -44,7 +47,7 @@ public class CarroNovoController {
         try {
             CarroNovo obj = converter(dto);
             obj = service.salvar(obj);
-            return new ResponseEntity(obj, HttpStatus.CREATED);
+            return new ResponseEntity(CarroNovoDTO.create(obj), HttpStatus.CREATED);
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -53,13 +56,13 @@ public class CarroNovoController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody CarroNovoDTO dto) {
         if (!service.getCarroNovoById(id).isPresent()) {
-            return new ResponseEntity("Acessório não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Carro Novo não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             CarroNovo obj = converter(dto);
             obj.setId(id);
             service.salvar(obj);
-            return ResponseEntity.ok(obj);
+            return ResponseEntity.ok(CarroNovoDTO.create(obj));
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -69,7 +72,7 @@ public class CarroNovoController {
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<CarroNovo> obj = service.getCarroNovoById(id);
         if (!obj.isPresent()) {
-            return new ResponseEntity("CarroNovo não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Carro Novo não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             service.excluir(obj.get());
@@ -81,6 +84,29 @@ public class CarroNovoController {
 
     public CarroNovo converter(CarroNovoDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(dto, CarroNovo.class);
+        CarroNovo carroNovo = modelMapper.map(dto, CarroNovo.class);
+
+        if (dto.getIdModelo() != null) {
+            Modelo modelo = new Modelo();
+            modelo.setId(dto.getIdModelo());
+            modelo.setNome(dto.getNomeModelo());
+            carroNovo.setModelo(modelo);
+        }
+
+        if (dto.getIdCombustivel() != null) {
+            Combustivel combustivel = new Combustivel();
+            combustivel.setId(dto.getIdCombustivel());
+            combustivel.setNome(dto.getNomeCombustivel());
+            carroNovo.setCombustivel(combustivel);
+        }
+
+        if (dto.getIdCarroceria() != null) {
+            Carroceria carroceria = new Carroceria();
+            carroceria.setId(dto.getIdCarroceria());
+            carroceria.setNome(dto.getNomeCarroceria());
+            carroNovo.setCarroceria(carroceria);
+        }
+
+        return carroNovo;
     }
 }
