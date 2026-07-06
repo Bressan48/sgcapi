@@ -45,7 +45,7 @@ public class FuncionarioService implements UserDetailsService{
     }
 
     public UserDetails autenticar(Funcionario funcionario){
-        UserDetails user = loadUserByUsername(funcionario.getLogin());
+        UserDetails user = loadUserByUsername(funcionario.getEmail());
         boolean senhasBatem = encoder.matches(funcionario.getSenha(), user.getPassword());
 
         if (senhasBatem){
@@ -55,19 +55,18 @@ public class FuncionarioService implements UserDetailsService{
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Funcionario funcionario = repository.findByLogin(username)
+        Funcionario funcionario = repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
-        // Ver se é gerente ou vendedor
         String[] roles = funcionario.isAdmin()
                 ? new String[]{"Gerente", "Vendedor"}
                 : new String[]{"Funcionario"};
 
         return User
                 .builder()
-                .username(funcionario.getLogin())
+                .username(funcionario.getEmail())
                 .password(funcionario.getSenha())
                 .roles(roles)
                 .build();

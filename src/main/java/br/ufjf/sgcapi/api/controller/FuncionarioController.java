@@ -70,12 +70,13 @@ public class FuncionarioController {
     @PostMapping("/auth")
     public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
         try{
-            Funcionario funcionario = Funcionario.builder()
-                    .login(credenciais.getLogin())
-                    .senha(credenciais.getSenha()).build();
+            Funcionario funcionario = new Funcionario();
+            funcionario.setEmail(credenciais.getLogin());
+            funcionario.setSenha(credenciais.getSenha());
+
             UserDetails funcionarioAutenticado = funcionarioService.autenticar(funcionario);
             String token = jwtService.gerarToken(funcionario);
-            return new TokenDTO(funcionario.getLogin(), token);
+            return new TokenDTO(funcionario.getEmail(), token);
         } catch (UsernameNotFoundException | SenhaInvalidaException e ){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciais inválidas");
         }

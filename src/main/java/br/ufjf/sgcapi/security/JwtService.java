@@ -33,7 +33,7 @@ public class JwtService {
 
         return Jwts
                 .builder()
-                .setSubject(funcionario.getLogin())
+                .setSubject(funcionario.getEmail())
                 .setExpiration(data)
                 .signWith( SignatureAlgorithm.HS512, chaveAssinatura )
                 .compact();
@@ -60,7 +60,7 @@ public class JwtService {
         }
     }
 
-    public String obterLoginUsuario(String token) throws ExpiredJwtException{
+    public String obterEmailUsuario(String token) throws ExpiredJwtException{
         return (String) obterClaims(token).getSubject();
     }
 }
