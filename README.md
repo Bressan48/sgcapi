@@ -6,29 +6,31 @@ Desenvolvido com Spring Boot.
 
 ### Dependências:
 
-Docker, PostgreSQL;
-PGadmin, Postman;
-Java 21, Maven 3.8.7;
+- Docker, PostgreSQL;
+- PGadmin, Postman;
+- Java 21, Maven 3.8.7;
 
 
 ### Endereços da aplicação
-Swagger ui: http://localhost:8080/swagger-ui/index.html#/
-pgadmin = http://localhost:5050/browser/
-postman = http://localhost:8080/api/v1/{path}
+- Swagger UI: http://localhost:8080/swagger-ui/index.html#/
+- pgadmin = http://localhost:5050/browser/
+- postman = http://localhost:8080/api/v1/{path}
 
 
 
 
 ### Comandos
+```bash
 sudo docker compose up
-./mvnw spring-boot:run (Linux)
+./mvnw spring-boot:run (Unix)
+```
 
 
 
-### Configuração do Docker Arquivos
+### Configuração do Docker File
 
-
-/// docker-compose.yml
+```
+// docker-compose.yml
 services:
   postgres:
     image: postgres:16
@@ -57,9 +59,10 @@ services:
 
 volumes:
   postgres_data:
+```
 
-/// FIM_DO_ARQUIVO
-
+### Configuração do application.properties
+```
 /// appication.properties
 spring.application.name=sgcapi
 #spring.datasource.url=jdbc:postgresql://172.18.10.31:5433/
@@ -79,40 +82,46 @@ spring.datasource.properties.serverTimezone=UTC
 security.jwt.expiracao=30
 security.jwt.chave-assinatura=YXBpIHNpc3RlbWEgZGUgY29udHJvbGUgYWNhZGVtaWNv
 
-// FIM_DO_ARQUIVO
+```
 
 
 ### MÉTODOS DE EXEMPLO DO CRUD Funcionario
 
-GET http://localhost:8080/api/v1/funcionarios (READ)
-POST http://localhost:8080/api/v1/funcionarios (CREATE - criar novo funcionario)
-  {
+- GET http://localhost:8080/api/v1/funcionarios (READ)
+- POST http://localhost:8080/api/v1/funcionarios (CREATE - criar novo funcionario)
+```json
+{
     "nome": "Claudemar",
-    "email": "lucario@rocks.com",
-    "login": "lucario@rocks.com",
+    "email": "claudemar@rocks.com",
+    "login": "claudemar@rocks.com",
     "endereco": "Cidade de Pallet",
-    "numTelefone": "callmeonmy",
-    "senha": "1103",
-    "senhaRepeticao": "1103",
-    "cpf": "celokochefe-#448",
+    "numTelefone": "012035468",
+    "senha": "1122",
+    "senhaRepeticao": "1122",
+    "cpf": "12345678911",
     "admin": true
   }
-POST http://localhost:8080/api/v1/funcionarios/auth (Autenticação/Segurança)
+```
+- POST http://localhost:8080/api/v1/funcionarios/auth (Autenticação/Segurança)
+  ```json
   {
-    "login": "lucario@rocks.com",
-    "senha": "1103"
+    "login": "claudemar@rocks.com",
+    "senha": "1122"
   }
-PUT http://localhost:8080/api/v1/funcionarios/{id} (UPDATE)
+  ```
+- PUT http://localhost:8080/api/v1/funcionarios/{id} (UPDATE)
+  ```json
   {
-    "nome": "Claudemar",
-    "email": "lucario@rocks.com",
-    "login": "lucario@rocks.com",
+    "nome": "Claudemar2",
+    "email": "claudemar@rocks.com",
+    "login": "claudemar@rocks.com",
     "endereco": "Cidade de Pallet",
-    "numTelefone": "callmeonmy",
-    "senha": "1103",
-    "senhaRepeticao": "1103",
-    "cpf": "celokochefe-#448",
+    "numTelefone": "012035468",
+    "senha": "1122",
+    "senhaRepeticao": "1122",
+    "cpf": "0123456789811",
     "admin": true
   }
+  ```
 
-DELETE http://localhost:8080/api/v1/funcionarios/{id} (DELETE)
+- DELETE http://localhost:8080/api/v1/funcionarios/{id} (DELETE)
