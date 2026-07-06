@@ -44,41 +44,37 @@ public class CarroNovoService {
     }
 
     public void validar(CarroNovo carroNovo) {
-        if (carroNovo.getModelo() == null || carroNovo.getModelo().getNome().isEmpty()) {
-            throw new RegraNegocioException("Nome do modelo inválida");
+        // Validação focada em garantir que o relacionamento/ID existe, e não o "nome" dele.
+        if (carroNovo.getModelo() == null || carroNovo.getModelo().getId() == null) {
+            throw new RegraNegocioException("Modelo inválido ou não informado");
         }
-        if (carroNovo.getPlaca() == null || carroNovo.getPlaca().isEmpty()) {
+        if (carroNovo.getCombustivel() == null || carroNovo.getCombustivel().getId() == null) {
+            throw new RegraNegocioException("Combustível inválido ou não informado");
+        }
+        if (carroNovo.getCarroceria() == null || carroNovo.getCarroceria().getId() == null) {
+            throw new RegraNegocioException("Carroceria inválida ou não informada");
+        }
+
+        if (carroNovo.getPlaca() == null || carroNovo.getPlaca().trim().isEmpty()) {
             throw new RegraNegocioException("Placa inválida");
         }
-        if (carroNovo.getChassi() == null || carroNovo.getChassi().isEmpty()) {
+        if (carroNovo.getChassi() == null || carroNovo.getChassi().trim().isEmpty()) {
             throw new RegraNegocioException("Chassi inválido");
         }
-        if (carroNovo.getCor() == null || carroNovo.getCor().isEmpty()) {
+        if (carroNovo.getCor() == null || carroNovo.getCor().trim().isEmpty()) {
             throw new RegraNegocioException("Cor inválida");
         }
-
-        if (carroNovo.getAnosDeGarantia() == null || carroNovo.getAnosDeGarantia() == 0) {
-            throw new RegraNegocioException("Ano de garantia inválido");
+        if (carroNovo.getAnosDeGarantia() == null || carroNovo.getAnosDeGarantia() <= 0) {
+            throw new RegraNegocioException("Anos de garantia inválidos");
         }
-
-        if (carroNovo.getAnoFabricacao() == null || carroNovo.getAnoFabricacao() == 0) {
+        if (carroNovo.getAnoFabricacao() == null || carroNovo.getAnoFabricacao() <= 0) {
             throw new RegraNegocioException("Ano de Fabricação inválido");
         }
-        if (carroNovo.getAnoModelo() == null || carroNovo.getAnoModelo() == 0) {
+        if (carroNovo.getAnoModelo() == null || carroNovo.getAnoModelo() <= 0) {
             throw new RegraNegocioException("Ano do Modelo inválido");
         }
-        if (carroNovo.getCombustivel() == null || carroNovo.getCombustivel().getNome().isEmpty()) {
-            throw new RegraNegocioException("Combustível inválido");
-        }
-        if (carroNovo.getPrecoInicial() == null || carroNovo.getPrecoInicial() == 0) {
+        if (carroNovo.getPrecoInicial() == null || carroNovo.getPrecoInicial() <= 0) {
             throw new RegraNegocioException("Preço inicial inválido");
         }
-        if (carroNovo.getCarroceria() == null || carroNovo.getCarroceria().getNome().isEmpty()) {
-            throw new RegraNegocioException("Carroceria inválida");
-        }
-        //if (carroNovo.getFoiVendido() == null) {
-        //    throw new RegraNegocioException("Condição foi vendido inválida");
-        //}
-
     }
 }

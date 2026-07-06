@@ -1,6 +1,5 @@
 package br.ufjf.sgcapi.api.dto;
 
-import br.ufjf.sgcapi.model.entity.Carro;
 import br.ufjf.sgcapi.model.entity.CarroNovo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,36 +9,46 @@ import org.modelmapper.ModelMapper;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarroNovoDTO extends Carro {
+public class CarroNovoDTO {
 
+    private Long id;
+    private Integer anoModelo;
+    private Integer anoFabricacao;
+    private String chassi;
+    private String cor;
+    private String placa;
+    private Double precoInicial;
+    private Boolean foiVendido;
     private Integer anosDeGarantia;
 
-    private Long idCarro;
     private Long idModelo;
-    private String nomeModelo;
     private Long idCombustivel;
-    private String nomeCombustivel;
     private Long idCarroceria;
+    private Long idDirecao;
+
+
+    // Só pro GET
+    private String nomeModelo;
+    private String nomeCombustivel;
     private String nomeCarroceria;
 
     public static CarroNovoDTO create(CarroNovo carroNovo) {
         ModelMapper modelMapper = new ModelMapper();
         CarroNovoDTO dto = modelMapper.map(carroNovo, CarroNovoDTO.class);
 
-        dto.idCarro = carroNovo.getId();
-
         if (carroNovo.getModelo() != null) {
-            dto.idModelo = carroNovo.getModelo().getId();
-            dto.nomeModelo = carroNovo.getModelo().getNome();
+            dto.setIdModelo(carroNovo.getModelo().getId());
+            dto.setNomeModelo(carroNovo.getModelo().getNome());
         }
         if (carroNovo.getCombustivel() != null) {
-            dto.idCombustivel = carroNovo.getCombustivel().getId();
-            dto.nomeCombustivel = carroNovo.getCombustivel().getNome();
+            dto.setIdCombustivel(carroNovo.getCombustivel().getId());
+            dto.setNomeCombustivel(carroNovo.getCombustivel().getNome());
         }
         if (carroNovo.getCarroceria() != null) {
-            dto.idCarroceria = carroNovo.getCarroceria().getId();
-            dto.nomeCarroceria = carroNovo.getCarroceria().getNome();
+            dto.setIdCarroceria(carroNovo.getCarroceria().getId());
+            dto.setNomeCarroceria(carroNovo.getCarroceria().getNome());
         }
+
         return dto;
     }
 }
