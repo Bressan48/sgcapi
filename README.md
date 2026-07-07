@@ -87,39 +87,42 @@ security.jwt.chave-assinatura=YXBpIHNpc3RlbWEgZGUgY29udHJvbGUgYWNhZGVtaWNv
 
 ### MÉTODOS DE EXEMPLO DO CRUD Funcionario
 
-- GET http://localhost:8080/api/v1/funcionarios (READ)
-- POST http://localhost:8080/api/v1/funcionarios (CREATE - criar novo funcionario)
+#### Exemplo token
+- Autenticação POST http://localhost:8080/api/v1/funcionarios/auth
 ```json
 {
-    "nome": "Claudemar",
-    "email": "claudemar@rocks.com",
-    "login": "claudemar@rocks.com",
-    "endereco": "Cidade de Pallet",
-    "numTelefone": "012035468",
-    "senha": "1122",
-    "senhaRepeticao": "1122",
-    "cpf": "12345678911",
-    "admin": true
-  }
+  "login": "rodolfo@gmail.com",
+  "senha": "123"
+}
+``` 
+- GET http://localhost:8080/api/v1/funcionarios (READ)
+- POST http://localhost:8080/api/v1/funcionarios (CREATE)
+```json
+{
+  "nome": "Alberto",
+  "email": "alberto@gmail.com",
+  "endereco": "Rua Outubro",
+  "numTelefone": "0214445569",
+  "login": "alberto@gmail.com",
+  "senha": "123456",
+  "senhaRepeticao": "123456",
+  "cpf": "01234567891",
+  "admin": true
+}
+
 ```
-- POST http://localhost:8080/api/v1/funcionarios/auth (Autenticação/Segurança)
-  ```json
-  {
-    "login": "claudemar@rocks.com",
-    "senha": "1122"
-  }
-  ```
 - PUT http://localhost:8080/api/v1/funcionarios/{id} (UPDATE)
-  ```json
+- 
+  ```json 
   {
-    "nome": "Claudemar2",
-    "email": "claudemar@rocks.com",
-    "login": "claudemar@rocks.com",
-    "endereco": "Cidade de Pallet",
-    "numTelefone": "012035468",
-    "senha": "1122",
-    "senhaRepeticao": "1122",
-    "cpf": "0123456789811",
+    "nome": "Alberto",
+    "email": "alberto@gmail.com",
+    "endereco": "Rua Outubro",
+    "numTelefone": "0214445569",
+    "login": "alberto@gmail.com",
+    "senha": "123456",
+    "senhaRepeticao": "123456",
+    "cpf": "01234567891",
     "admin": true
   }
   ```
