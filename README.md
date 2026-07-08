@@ -1,8 +1,8 @@
-# Informações Relevantes para o sgcapi
+# Sgcapi
 
 Projeto da Disciplina DCC208 A - Desenvolvimento Web BACK-END.
 O projeto busca implementar uma API para um Sistema de Gerenciamento de Concessionária.
-Desenvolvido com Spring Boot.
+Desenvolvido com Spring Boot. O arquivo `documentacao_req_uml.zip` possui o Diagrama de Classes e O Documento de Requisitos da API.
 
 ### Dependências:
 
